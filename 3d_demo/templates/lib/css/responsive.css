@@ -1,0 +1,10 @@
+@media (max-width:991px){
+.gta{    overflow: visible !important;}
+}
+}
+@media (min-width:1024px){
+body{
+overflow:hidden;}
+}
+@media (max-width:620px){
+}

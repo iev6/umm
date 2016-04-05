@@ -1,0 +1,42 @@
+/*3d position face*/
+		.fa{color:#919191}
+		button1{padding: 1%;    background: #B04D2B;    border: none;    color: #fff;}
+		.min-height2{/*min-height:500px;*/}
+		  video, canvas {
+   <!--  margin-left: 230px; -->
+    margin-top: 120px;
+    position: relative;
+  }
+  video{width:100%;height:100%;padding-top: 2px;}
+  .m-top3 {
+    margin: 10% 0px 0px 0px;
+}
+.overlay_v{position: absolute;
+    top: 30%;
+    bottom: 0;
+    left: 35%;
+    right: 0;
+    border: 2px dotted #fff;
+    width: 190px;
+    height: 230px;
+    z-index: 1;border-radius: 50%;}
+  .check{    color:green !important;font-size: 30px;}
+  .check1{    padding-left: 5%;font-size: 30px;}
+  .check2{    padding-left: 5%;font-size: 30px;}
+  .m-top3 {
+    margin: 0% 0px 1% 0px;
+}
+#record{padding: 5% 8% !important;
+    border-radius: 20px !important;
+    background: #E28A5F !important;
+    text-align: center !important;
+    color: #fff !important;border: none !important;    }
+	#record_stop{padding: 5% 8% !important;
+    border-radius: 20px !important;
+    background: #E28A5F !important;
+    text-align: center !important;
+    color: #fff !important;border: none !important;    }
+	.min_hg{height:454px !important; }
+	.bi{color:#91E3CC !important;}
+	button:focus {outline: -webkit-focus-ring-color auto 0px !important;}
+	/*button:focus {outline: -webkit-focus-ring-color auto 0px;}*/

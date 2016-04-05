@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	
+  </head>
+  <body>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 ">
+			<i class="fa fa-times fa_positionyourface close_btn" title="close"></i>
+				<div class="col-md-3 m-top no-padding m-top3">
+					<div class="position_face">
+					<div class="col-md-12 position">
+						<div class="col-md-12 position">
+						<a class="back 3dpositionface_back"><i class="fa fa-arrow-left back_arrow" style="      color: #919191;  margin-right: 5px;"></i>Back</a>
+						<h2 class="p_top">Position<br>your face</h2>
+						<h3>Make sure that you have great lighting.</h3>
+						<p>( If you're wearing glasses, please remove them )</p>
+						
+						</div>
+						
+					</div>
+					<div class="col-md-12 m-top3">
+							
+							
+							
+								<div class="col-md-12 position slider p_slid">
+
+								<i id="fa" class="fa fa-check check"></i>
+								<i id="fa1" class="fa fa-check check1"></i>
+								<i id="fa2" class="fa fa-check check2"></i>
+								</div>
+							
+					</div>
+					<div>
+						 <button id="play" disabled style="visibility: hidden;width:0px;">Play</button>
+						 <button id="record">Start Recording</button>		
+					   	 <button id="download" disabled style="visibility: hidden;width:0px;">Download</button>
+					</div>
+					</div>
+					<div class="position_goodtry">
+					<div class="col-md-12 position">
+						<i class="tick fa fa-check-circle-o bottom_icon bi"></i>
+						<h2 class="p_top h2_top">You are<br> good to go<br> TRY ON</h2>
+					</div>
+					<div class="col-md-12 m-top3 m-top33">
+						
+						<div class="col-md-12 no-padding">
+							<div class="col-md-3 no-padding text-left">
+								<!-- <i class="fa fa-volume-up bottom_icon"></i> -->
+							</div>
+							<div class="col-md-6 text-right reset">
+							<p style="color:#919191;" class="reset_redirect"><i class="fa fa-repeat bottom_icon"></i> RESET</p>
+							
+							</div>
+							
+						</div>
+					</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-md-6 p_top no-padding position_bg min-height2 min_hg">
+					<div class="postion_vid_position">
+					<audio id="my_audio" src="faceui1.mp3" autoplay="autoplay"></audio>
+					<div class="col-md-12 m-top3 no-padding">
+					<p style="text-transform: uppercase;font-size: 0px;padding: 0;margin: 0;">
+						<span id='headtrackerMessage'>Position your face</span>
+					</p>
+							<div class="demo-frame">
+								<div class="demo-container">
+									<div id="overlay_v" class="overlay_v"></div>
+									<video id="video" width="640" height="480" preload autoplay loop muted></video>
+									<video id="recorded" autoplay loop muted style="display:none;"></video>
+									<canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+								</div>
+							</div>
+							
+						 
+					</div>
+					</div>
+					<div class="postion_vid_loader">
+						<img src="{{:host}}/images/loading_spinner.gif" class="img-responsive" style="    margin:21% auto;">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	
+	
+		<script src="{{:host}}/js/face_c/tracking-min.js"></script>
+		<script src="{{:host}}/js/face_c/face-min.js"></script>
+
+		<script src="{{:host}}/js/face_track/adapter.js"></script>
+		<script src="{{:host}}/js/face_track/main_1.js"></script>
+  </body>
+</html>

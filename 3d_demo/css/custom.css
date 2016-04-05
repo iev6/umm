@@ -1,0 +1,250 @@
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('../fonts/Roboto-Regular.ttf');
+	font-weight:normal;
+}
+@font-face {
+	font-family: 'Roboto-Medium';
+	src: url('../fonts/Roboto-Medium.ttf');
+	font-weight:normal;
+}
+@font-face {
+	font-family: 'Roboto-Bold';
+	src: url('../fonts/Roboto-Bold.ttf');
+	font-weight:normal;
+}
+#3D-Tryon-eyewear * {margin:0; padding:0;}
+#3D-Tryon-eyewear body {background: #fff;	overflow-x:hidden;font-family: 'Roboto-Regular';}
+#3D-Tryon-eyewear h1,#3D-Tryon-eyewear h2,#3D-Tryon-eyewear h3,#3D-Tryon-eyewear h4,#3D-Tryon-eyewear h5,#3D-Tryon-eyewear h6 { font-family: 'Roboto-Regular';  text-shadow: none;}
+#3D-Tryon-eyewear body, #3D-Tryon-eyewear p, #3D-Tryon-eyewear a, #3D-Tryon-eyewear span{ font-family: 'Roboto-Regular';}
+#3D-Tryon-eyewear a{color:#000}
+#3D-Tryon-eyewear h3{    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.3;}
+#3D-Tryon-eyewear a:hover{text-decoration:none;color:#000}
+#3D-Tryon-eyewear .no-padding{padding:0px;}
+#3D-Tryon-eyewear .login_page {background:url('../images/login_page.jpg');background-size: cover;width: 100%;}
+#3D-Tryon-eyewear .login_page_margin{margin:12% auto;}
+#3D-Tryon-eyewear .login_page_margin h2{font-size:50px;text-align:left;color:#ffffff;}
+#3D-Tryon-eyewear .login_page_margin a{font-size:18px;text-align:left;color:#ffffff;text-decoration: none;line-height:3}
+#3D-Tryon-eyewear .login_page_margin p{font-size:14px;text-align:left;color:#ffffff;}
+#3D-Tryon-eyewear .upload {text-align:center;background-color:#F5F5F5;}
+#3D-Tryon-eyewear .upload::after{content: "(or)";
+    position: absolute;
+    top: 67%;
+    right: -38px;
+    font-size: 30px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 50%;
+    padding: 3%;}
+#3D-Tryon-eyewear .upload p{padding: 2%;}
+#3D-Tryon-eyewear .upload img{padding: 5% 0%;}
+#3D-Tryon-eyewear .upload a:hover{color:#fff;}
+#3D-Tryon-eyewear .upload_photo1{padding: 2% 8%;
+    border-radius: 4px;
+    color: #fff;
+   background-color: #4A4A4A;
+	border: 1px solid #4A4A4A;
+   }
+#3D-Tryon-eyewear .take_photo{padding: 2% 8%;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #4A4A4A;
+	border: 1px solid #4A4A4A;
+	}
+	
+#3D-Tryon-eyewear .take-photo {text-align:center;background-color:#F5F5F5;}
+#3D-Tryon-eyewear .take-photo p{padding: 2%;}
+#3D-Tryon-eyewear .take-photo img{padding: 5% 0%;}
+#3D-Tryon-eyewear .take-photo button{padding: 2% 14%;border-radius: 4px;background-color: #4A4A4A;border: 1px solid #4A4A4A;color:#fff;}
+#3D-Tryon-eyewear .help-1{border-bottom: 1px solid;float: left;margin-left: 23%;visibility:hidden}
+#3D-Tryon-eyewear .help-2{border-bottom: 1px solid;float: right;margin-right: 23%;visibility:hidden}
+#3D-Tryon-eyewear .help-3{border-bottom: 1px solid;float: right;margin-right: 23%;padding: 1% !important;}
+#3D-Tryon-eyewear .upload:hover{background-color: #fff;}
+#3D-Tryon-eyewear .upload:hover  .upload_photo1{background-color:#FA7347;border: 1px solid #FA7347;}
+#3D-Tryon-eyewear .upload:hover .help-1{visibility: visible;}
+#3D-Tryon-eyewear .take-photo:hover{background-color: #fff;}
+#3D-Tryon-eyewear .take-photo:hover .take_photo{background-color:#FA7347;border: 1px solid #FA7347;color:#fff;}
+#3D-Tryon-eyewear .take-photo:hover .help-2{visibility: visible;}
+#3D-Tryon-eyewear .blue {
+    padding: 10px 7px 10px 7px;
+    text-align: center;
+    width: 80%;
+    color: #fff;
+	background: #0064AC;
+    border: none;
+    /* margin-left: 12%; */
+}
+#3D-Tryon-eyewear .blue span {
+   color: #fff;
+   background: #0064AC;
+    position: absolute;
+   left: -20px;
+    padding: 9px 12px 10px 12px;
+    bottom: 0px;
+}
+#3D-Tryon-eyewear .popup_login1 {
+    padding: 10px 7px 10px 7px;
+    text-align: center;
+    width: 80%;
+    color: #fff;
+	background: #0064AC;
+    border: none;
+    /* margin-left: 12%; */
+}
+#3D-Tryon-eyewear .popup_login1  span {
+    color: #fff;
+    background: #0064AC;
+    position: absolute;
+   left: -19px;
+    padding: 13px 11px 6px 11px;
+    bottom: 0px;
+}
+#3D-Tryon-eyewear .orange {
+    padding: 10px 7px 10px 7px;
+    text-align: center;
+	background: #B9320A;
+    width: 80%;
+    color: #fff;
+    border: none;
+    /* margin-left: 12%; */
+}
+#3D-Tryon-eyewear .orange span {
+   color: #fff;
+   background: #B9320A;
+    position: absolute;
+   left: -20px;
+    padding: 9px 9px 10px 9px;
+    bottom: 0px;
+}
+#3D-Tryon-eyewear .popup_login2 {
+    padding: 10px 7px 10px 7px;
+    text-align: center;
+	background: #B9320A;
+    width: 80%;
+    color: #fff;
+    border: none;
+    /* margin-left: 12%; */
+}
+#3D-Tryon-eyewear .popup_login2 span {
+  color: #fff;
+    background: #B9320A;
+    position: absolute;
+    left: -19px;
+    padding: 13px 11px 6px 11px;
+    bottom: 0px;
+}
+#3D-Tryon-eyewear .m-top{margin:5% 0%}
+#3D-Tryon-eyewear .m-top3{margin:25% 0px 0px 0px}
+#3D-Tryon-eyewear .m-left{ margin-left: 5%;}
+#3D-Tryon-eyewear .zoom{margin-top: 60%;}
+#3D-Tryon-eyewear .zoom i {color: #919191;font-size: 30px;padding: 25% 0;}
+#3D-Tryon-eyewear .back{color: #4A4A4A;text-decoration: none;border-bottom: 1px solid;padding:2% 0;}
+#3D-Tryon-eyewear .back:hover{color: #4A4A4A;text-decoration: none;}
+#3D-Tryon-eyewear .p_top{padding:5% 0;}
+#3D-Tryon-eyewear .position h2{font-size: 40px;    font-weight: bold;}
+#3D-Tryon-eyewear .position_bg{background-color:#F5F5F5;}
+#3D-Tryon-eyewear .inline-btn{background-color: #FA7347;border: 1px solid #FA7347;padding: 2% 14% !important;border-radius: 4px;color: #fff;}
+#3D-Tryon-eyewear .inline-btn:hover{background-color: #FA7347;border: 1px solid #FA7347;padding: 2% 14% !important;border-radius: 4px;color: #fff;}
+
+#3D-Tryon-eyewear > #boxes h2 ,#3D-Tryon-eyewear > #boxes p ,#3D-Tryon-eyewear > #boxes  img, #3D-Tryon-eyewear > #boxes button, #3D-Tryon-eyewear > #boxes ol li{padding:3% 0;}
+#3D-Tryon-eyewear > #boxes ol li{padding-left: 3%;}
+#3D-Tryon-eyewear > #boxes h2{font-size: 40px;}
+#3D-Tryon-eyewear .volume{    color: #919191; font-size: 30px;}
+#3D-Tryon-eyewear .repeat{    color: #919191; font-size: 30px;    margin: 0px 15px 8px 16px;}
+#3D-Tryon-eyewear .reset a{color:#919191;text-decoration:none;}
+#3D-Tryon-eyewear .repeat{    color: #919191; font-size: 30px;    margin: 0px 15px 8px 16px;}
+#3D-Tryon-eyewear .repeat1{    color: #BEBEBE; font-size: 30px;    margin: 0px 15px 8px 16px;}
+#3D-Tryon-eyewear .reset a{color:#919191;text-decoration:none;}
+#3D-Tryon-eyewear .clear{    position: absolute; bottom: 5px;}
+#3D-Tryon-eyewear .clear a{color:#BEBEBE}
+#3D-Tryon-eyewear .check{color:#e1e1e1;}
+#3D-Tryon-eyewear .circle-o{    font-size: 36px; color: #A5D642;}
+		#3D-Tryon-eyewear .camera{    font-size: 36px; color:#E28A5F !important}
+		#3D-Tryon-eyewear .upload_photo h3{    padding: 5%;
+    border-radius: 20px;
+    background: #E28A5F;
+    text-align: center;
+	color:#fff;}
+	#3D-Tryon-eyewear .details p{    padding: 1% 0%;    font-size: 14px;}
+	#3D-Tryon-eyewear .upload_photo a{color:#fff;font-size:14px;}
+	#3D-Tryon-eyewear .mCustomScrollbar{height:430px;}
+	#3D-Tryon-eyewear .min-height{height:545px;}
+	#3D-Tryon-eyewear .border1{ 
+	cursor:pointer;
+	overflow: hidden;
+	padding: 11% 0%;
+    border: 1px solid #e1e1e1;
+    border-radius: 7px;}
+	#3D-Tryon-eyewear .border1 img{padding: 0% 5%;}
+	#3D-Tryon-eyewear .upload_photo_bg{background: url('../images/bg.png');
+    background-size: cover;}
+	#3D-Tryon-eyewear .m-top2{margin:3% 0%}
+	#3D-Tryon-eyewear .more{    color: #000; margin: 5px 6%; border-bottom: 1px solid #e1e1e1;}
+	#3D-Tryon-eyewear .more i{    color: #000;}
+	#3D-Tryon-eyewear .content1 p{    line-height: 1.3;    font-weight: bold; font-size: 15px;}
+	#3D-Tryon-eyewear .square p{font-weight: bold; font-size: 15px;}
+	#3D-Tryon-eyewear .square i{color:#e1e1e1; margin: 0px 2%;}
+	#3D-Tryon-eyewear .floppy{    
+	color:#919191;
+	background: #e1e1e1;
+    padding: 3% 3%;
+    border-radius: 34px;
+    margin: 0px 2%;
+    font-size: 31px;}
+	#3D-Tryon-eyewear .share{ 
+	color:#919191;
+    padding: 3% 3%;
+    margin: 0px 2%;
+    font-size: 31px;}
+	#3D-Tryon-eyewear .add_to_cart a{
+	padding: 5% 8%;
+    border-radius: 20px;
+    background: #E28A5F;
+    text-align: center;
+    color: #fff;}
+	#3D-Tryon-eyewear .heart{    margin-left: 4%; font-size: 20px;    color: #bebebe;}
+	#3D-Tryon-eyewear .compare{color:#919191;}
+	#3D-Tryon-eyewear .compare:focus{text-decoration:none}
+	
+	#3D-Tryon-eyewear .overlay {
+    background: rgba(0, 0, 0, 0.74);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    -webkit-transform: translate3d(0px, -400px, 0px);
+    transform: translate3d(0px, -400px, 0px);
+    transition: all 0.5s ease-out;
+}
+	#3D-Tryon-eyewear .top_shadow:hover .details1 p {color:#E3875B;}
+	#3D-Tryon-eyewear .top_shadow:hover .overlay {
+    z-index: 2;
+    cursor: pointer;
+    background: rgba(227, 135, 91, 0.46);
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+    transition: all 0.5s ease-in;
+}
+#3D-Tryon-eyewear .top_shadow a{    
+	background: #E28A5F;
+    padding: 13%;
+    color: #fff;
+    border-radius: 50%;}
+#3D-Tryon-eyewear .txt_center{margin:40px 0px;}
+#3D-Tryon-eyewear .mCustomScrollbar p{font-size:14px;line-height:1.3}
+#3D-Tryon-eyewear .fileimage{color:#5D5D5D;font-size:35px;box-shadow: -4px 5px 1px #5d5d5d;}
+#3D-Tryon-eyewear .align{color:#e1e1e1;font-size:25px;}
+#3D-Tryon-eyewear .trash{    font-size: 30px; margin-top: 5%;}
+#3D-Tryon-eyewear .min-height2{min-height:500px;}
+#3D-Tryon-eyewear .need-help{border-bottom: 1px solid;
+    float: left;
+    position: absolute;
+    bottom: 15%;}
+	#3D-Tryon-eyewear .skip_login{cursor:pointer;}
+	#3D-Tryon-eyewear .take_photo{cursor:pointer;}
+	#3D-Tryon-eyewear .upload_photo1{cursor:pointer;}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<style>
+#owl-demo .item{background:none;margin: 0 2.5em;}
+.owl-theme .owl-controls .owl-buttons div {
+color: #FFF;
+display: inline-block;
+zoom: 1; 
+*display: inline;
+margin: 5px;
+padding: 3px 10px;
+font-size: 12px;
+filter: Alpha(Opacity=50);
+opacity: 0.5;
+}
+ .owl-next .fa-angle-right{font-size:50px;}
+ .owl-prev .fa-angle-left{font-size:50px;}
+ .owl-next {top: 30%;right: -2%;}
+ .owl-prev {top: 30%;left: -2%;}
+	</style>
+  </head>
+  <script>
+  </script>
+  <body>
+	<div class="container trailroom">
+		<div class="row">
+			<div class="col-md-12 ">
+				<i class="fa fa-times fa_trailroom close_btn" title="close"></i>
+				<div class="col-md-3 m-toptrail no-padding">
+					<div class="col-md-12 position position1 details">						
+						<h2 class="p_top">Trying Now</h2>
+						<div class="col-xs-12 no-padding">
+							<div class="col-xs-6 no-padding">
+								<p>Model No.</p>
+							</div>
+							<div class="col-xs-6 no-padding">
+								<p id="EyeModel">{{:EyeWearModel}}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 no-padding">
+							<div class="col-xs-6 no-padding">
+								<p>Brand Name</p>
+							</div>
+							<div class="col-xs-6 no-padding">
+								<p id="Brandname">{{:BrandName}}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 no-padding">
+							<div class="col-xs-6 no-padding">
+								<p>Product Type</p>
+							</div>
+							<div class="col-xs-6 no-padding">
+								<p id="Protype">	{{:ProductType}}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 no-padding">
+							<div class="col-xs-6 no-padding">
+								<p>Frame Type</p>
+							</div>
+							<div class="col-xs-6 no-padding">
+								<p id="Frmtype">	{{:FrameType}}</p>
+								
+							</div>
+						</div>
+						<div class="col-xs-12 no-padding">
+							<div class="col-xs-6 no-padding">
+								<p>Frame Shape</p>
+							</div>
+							<div class="col-xs-6 no-padding">
+								<p id="Frmshape">{{:FrameShape}}</p>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-xs-12 m-top2 content1">
+						<p id="ProName">{{:ProductName}}</p>
+					</div>
+					<div class="col-xs-12 m-top2 square">
+						<p>Available Colors</p><br>
+						<i class="fa fa-square" style="margin: 0;"></i>
+						<i class="fa fa-square"></i>
+						<i class="fa fa-square"></i>
+						<i class="fa fa-square"></i>
+						<i class="fa fa-square"></i>
+					</div>
+					<div class="col-xs-12 m-top2">
+						<a id="download"><i class="fa fa-floppy-o floppy"></i></a>
+						<a href="#inline_content1" class="inline1"><i class="fa fa-share-alt share"></i></a>
+						<div style="display:none">
+							<div id="inline_content1" class="login_page_margin login_page_marginpop" style="padding:10px;color:#fff;">
+								<h2 class="text-center">Download / Share</h2>
+								<div class="share_btn">
+									<span class="fb_share"><i class="fa fa-facebook"></i></span><button class="popup_login1" type="button">LOG-IN</button>
+									<span><i class="fa fa-google-plus"></i></span><button class="popup_login2" type="button">LOG-IN</button>
+								</div>
+								<p class="text-center">We will never share your personal information with anyone.</p>								
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 add_to_cart m-top text-left" style="      margin-top: 15%;">
+						<a href="#" class=""> ADD TO CART</a><i class="fa fa-heart-o heart"></i>						
+					</div>
+					<div class="col-md-12 text-left m-top2">
+						<a href="#inline_content" class="compare inline"> Add To Compare</a>
+							<div style="display:none">
+								<div id="inline_content" style="padding:10px;color:#fff;">
+									<div class="compare_div">											
+											<div id="owl-demo" class="owl-carousel owl_carsel">
+												<div class="item">
+													<div class="compare_box"><i class="fa fa-trash trash"></i><canvas id="canvas1" height="450px" width="450px"></canvas></div>
+												</div>
+												<div class="item">
+													<div class="compare_box"><i class="fa fa-trash trash"></i><canvas id="canvas2" height="450px" width="450px"></canvas></div>
+												</div>
+												<div class="item">
+													<div class="compare_box"><i class="fa fa-trash trash"></i><canvas id="canvas3" height="450px" width="450px"></canvas></div>
+												</div>
+												<div class="item">
+													<div class="compare_box"><i class="fa fa-trash trash"></i><canvas id="canvas4" height="450px" width="450px"></canvas></div>
+												</div>
+												<div class="item">
+													<div class="compare_box"><i class="fa fa-trash trash"></i><canvas id="canvas5" height="450px" width="450px"></canvas></div>
+												</div>
+											</div>																	
+									</div>
+								</div>
+							</div>						
+					</div>
+				</div>
+				<div class="col-md-6 p_top no-padding upload_photo_bg ">
+					<div class="col-md-12 no-padding">
+					<div class="position_uploadframe">
+						<div class="col-md-5 takephoto_popover">							
+							<a id="popoverOption" class="takeaphoto" data-content="TAKE A PHOTO" rel="popover" data-placement="right"><i class="camera fa fa-camera"></i></a>
+						</div>
+						<div class="col-md-2 upload_photo">
+							
+						</div>
+						<div class="col-md-4 text-right no-padding add_toc">
+							<a id="popoverOption1" class="inline compare_add" href="#inline_content" data-content="ADD TO COMPARE" rel="popover" data-placement="left"><i class="fa fa-file-image-o fileimage"></i></a>
+						</div>
+						</div>
+					</div>
+					<div class="col-md-12 no-padding canvas_area">
+                        <canvas id="canvas11" height="480px" width="640px"></canvas>
+					</div>
+					<div class="col-md-12 no-padding text-center">
+						<div class="position_rollmouse">							
+							<p class="p1"></p>
+							<p>Roll your mouse & have fun</p>
+						</div>						
+					</div>
+				</div>
+				<div class="col-md-3 m-toptrail no-padding">
+					<div class="col-md-12 t_youmay">
+						<div class="col-md-2 ">
+							<a href="#"><i class="fa fa-align-left align align_hover"></i></a>
+						</div>
+					<div class="col-md-7 no-padding">
+						<h3 class="h3maylike"><a href="#">You May Also Like</a></h3>
+					</div>
+					</div>
+					<div id="content-1" class="col-md-12 m-top mCustomScrollbar">
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass1.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>						
+							</div>						
+						</div>
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass2.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>						
+							</div>						
+						</div>
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass3.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>						
+							</div>						
+						</div>
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass1.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>						
+							</div>						
+						</div>
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass2.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>						
+							</div>						
+						</div>
+						<div class="col-xs-12 m-top2 top_shadow">
+							<div class="col-xs-5 border1  no-padding">								
+									<img src="{{:host}}/images/glass3.png" alt="images" class="img-responsive">								
+								<div class="overlay">
+									<div class="txt_center text-center">										
+										<a href="#" class="read_more">TRY</a>
+									</div>
+								</div>
+							</div>							
+							<div class="col-xs-7 details1">
+								<p>Vincent Chase</p>
+								<p>VC m3025</p>
+								<p>SIZE : MEDIUM</p>
+						
+							</div>
+						
+						</div>
+					</div>
+					<div class="col-xs-12">
+						<a href="#" class="more">more <i class="fa fa-arrow-right more_right"></i></a>
+					</div>
+					
+					<div id="content-2" class="col-md-12 no-padding mayknow_list mCustomScrollbar">
+						<div class="list_1">
+						<ul>
+							<li class="firstlist"><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+						</ul>
+					</div>
+					<div class="list_2">
+						<ul>
+							<li class="firstlist"><i class="fa fa-arrow-left back_arrowlist"></i> <a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+							<li><a>EYEGLASSES</a></li>
+						</ul>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{{:host}}/js/main.js"></script>
+  </body>
+</html>
