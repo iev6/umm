@@ -1,0 +1,23 @@
+<script src="js/clmtrackr/clmtrackr.js"></script>
+<script src="js/clmtrackr/model_pca_20_svm.js"></script>
+
+<!-- <script type="text/javascript">
+  function positionLoop() {
+    requestAnimationFrame(positionLoop);
+    var positions = ctracker.getCurrentPosition();
+    // positions = [[x_0, y_0], [x_1,y_1], ... ]
+    // do something with the positions ...
+  }
+  positionLoop();
+</script> -->
+
+<video id="inputVideo" width="400" height="300" autoplay loop>
+  <source src="./media/somevideo.ogv" type="video/ogg"/>
+</video>
+<script type="text/javascript">
+  var videoInput = document.getElementById('inputVideo');
+
+  var ctracker = new clm.tracker();
+  ctracker.init(pModel);
+  ctracker.start(videoInput);
+</script>

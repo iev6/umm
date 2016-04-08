@@ -1,0 +1,415 @@
+<!doctype html>
+<!-- TODO: UI Add indicators on canvas -->
+<!-- TODO: Plot eyes,nose, chin, looks nice line width -->
+<!-- TODO:  -->
+<html lang="en">
+	<head>
+		<title>Face tracker</title>
+		<meta charset="utf-8">
+		<link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+			body {
+				font-family: 'Lato';
+				background-color: #f0f0f0;
+				margin: 0px auto;
+				max-width: 1150px;
+			}
+
+			#overlay {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				-o-transform : scaleX(-1);
+				-webkit-transform : scaleX(-1);
+				transform : scaleX(-1);
+				-ms-filter : fliph; /*IE*/
+				filter : fliph; /*IE*/
+			}
+
+			#videoel {
+				-o-transform : scaleX(-1);
+				-webkit-transform : scaleX(-1);
+				transform : scaleX(-1);
+				-ms-filter : fliph; /*IE*/
+				filter : fliph; /*IE*/
+			}
+
+			#container {
+				position : relative;
+				width : 370px;
+				/*margin : 0px auto;*/
+			}
+
+			#content {
+				margin-top : 70px;
+				margin-left : 100px;
+				margin-right : 100px;
+				max-width: 950px;
+			}
+
+			#sketch {
+				display: block;
+			}
+
+			#filter {
+				display: none;
+			}
+
+			h2 {
+				font-weight : 400;
+			}
+
+			.nogum {
+				display : none;
+			}
+
+			.btn {
+				font-family: 'Lato';
+				font-size: 16px;
+			}
+
+			.hide {
+				display : none;
+			}
+
+			.nohide {
+				display : block;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="../js/ext_js/utils.js"></script>
+		<script src="../js/ext_js/jsfeat-min.js"></script>
+		<script src="../js/ext_js/frontalface.js"></script>
+		<script src="../js/ext_js/jsfeat_detect.js"></script>
+		<script src="../js/ext_js/numeric-1.2.6.min.js"></script>
+		<script src="../js/ext_js/mosse.js"></script>
+		<script src="../js/ext_js/left_eye_filter.js"></script>
+		<script src="../js/ext_js/right_eye_filter.js"></script>
+		<script src="../js/ext_js/nose_filter.js"></script>
+		<script src="../models/model_spca_20_svm.js"></script>
+		<script src="../js/clm.js"></script>
+		<script src="../js/svmfilter_webgl.js"></script>
+		<script src="../js/svmfilter_fft.js"></script>
+		<script src="../js/mossefilter.js"></script>
+		<script src="../js/ext_js/Stats.js"></script>
+
+		<script src="https://cdn.webrtc-experiment.com/screenshot.js"></script>
+		<script src="https://cdn.webrtc-experiment.com/RecordRTC/Whammy.js"></script>
+		<script src="https://cdn.webrtc-experiment.com/RecordRTC/CanvasRecorder.js"></script>
+		<script src="https://cdn.webrtc-experiment.com/RecordRTC/MediaStreamRecorder.js"></script>
+		<script src="https://cdn.WebRTC-Experiment.com/gumadapter.js"></script>
+
+		<div id="content">
+			<center>
+				<h2 id="displayText">Face record</h2>
+				<input type="text" onkeypress="videoRecord()">
+				<div id="container">
+				<video id="videoel" width="400" height="300" preload="auto" loop>
+					<!--<video id="videoel" width="320" height="240" preload="auto">-->
+					<!--<source src="./media/franck.ogv" type="video/ogg"/>-->
+				</video>
+				<canvas id="overlay" width="400" height="300"></canvas>
+				<!--<canvas id="sketch" width="400" height="300"></canvas>-->
+			</div>
+			<br/>
+			<input class="btn" type="button" value="wait, loading video" disabled="disabled" style="visibility:hidden" onclick="startVideo()" id="startbutton"></input>
+		</center>
+			<script>
+				var vid = document.getElementById('videoel');
+				var overlay = document.getElementById('overlay');
+				var overlayCC = overlay.getContext('2d');
+				var FACE_STATE = {
+					NOT_IN_ROI:0,
+					IN_ROI:1,
+					IN_ROI_EXTREME_LEFT:2,
+					IN_ROI_EXTREME_RIGHT:3,
+					INIT:4
+				}
+
+				var recorder = new CanvasRecorder(vid, {
+					disableLogs: false
+				});
+				var videoState = 0;
+				var videoRecord = function() {
+					if(!videoState) {
+						videoRecordStart();
+						videoState = 1;
+					}
+					else {
+						videoRecordStop();
+						videoState = 0;
+					}
+				}
+				var videoRecordStart = function() {
+					console.log("STARTED");
+					recorder.record();
+				};
+				var videoRecordStop = function() {
+					setTimeout(function() {
+					recorder.stop(function(blob) {
+						var video = document.createElement('video');
+						video.src = URL.createObjectURL(blob);
+						video.setAttribute('style', 'height: 100%; position: absolute; top:0;');
+						document.body.appendChild(video);
+						video.controls = true;
+						video.play();
+					})
+				}, 2000);
+				};
+
+				var ctrack = new clm.tracker({useWebGL : true});
+				ctrack.init(pModel);
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				document.getElementById('container').appendChild( stats.domElement );
+
+				function enablestart() {
+					var startbutton = document.getElementById('startbutton');
+					startbutton.value = "start";
+					startbutton.disabled = null;
+					startbutton.click();
+				}
+
+				function get_angle_between(pt1,pt2){
+  				return -1.0 * Math.atan2(pt2[1]-pt1[1],pt2[0]-pt1[0]);
+				}
+
+				function get_distance(pt1,pt2){
+  				return Math.sqrt(Math.pow(pt1[0]-pt2[0],2)+Math.pow(pt1[1]-pt2[1],2));
+				}
+
+				function find_sigma(ln,lf, Rn,theta) {
+					var dz=0;
+					var m1 = (ln*ln)/(lf*lf);
+					var m2 = (Math.cos(theta))*(Math.cos(theta));
+
+					if (m2 == 1)
+					{
+						dz = Math.sqrt(	(Rn*Rn)/(m1 + (Rn*Rn))	);
+					}
+					if (m2>=0 && m2<1)
+					{
+						dz = Math.sqrt(	((Rn*Rn) - m1 - 2*m2*(Rn*Rn) + Math.sqrt(	((m1-(Rn*Rn))*(m1-(Rn*Rn))) + 4*m1*m2*(Rn*Rn)	))/ (2*(1-m2)*(Rn*Rn))	);
+					}
+					sigma = Math.acos(dz);
+					return sigma;
+				}
+				var idx = 0;
+				function getAngleParams(positions){
+					var noseTip = [positions[62][0],positions[62][1]];
+					var noseBase = [positions[37][0],positions[37][1]];
+
+					var midEye = [0.5*(positions[27][0]+positions[27][0]),0.5*(positions[32][1]+positions[32][1])];
+					var mouth = [0.5*(positions[57][0]+positions[60][0]),0.5*(positions[57][1]+positions[60][1])];
+
+					var symm_x = get_angle_between(noseBase, midEye);
+					var tau = get_angle_between(noseBase, noseTip);
+					var theta = Math.abs(tau - symm_x);
+
+					var sigma = find_sigma(get_distance(noseTip, noseBase), get_distance(midEye, mouth), 0.5, theta);
+					var normal = [Math.sin(sigma)*Math.cos(tau),Math.sin(sigma)*Math.sin(-tau),-Math.cos(sigma)];
+					//console.log(normal);
+					var yaw = Math.acos((Math.abs(normal[2]))/(Math.sqrt(normal[0]*normal[0] + normal[1]*normal[1] + normal[2]*normal[2])));
+					if((noseTip[0] - noseBase[0]) < 0) {
+  					yaw = -yaw;
+					}
+
+					var roll = Math.atan2(positions[33][0]-positions[62][0],positions[33][1]-positions[62][1]) //tan2(y,x)
+
+					return { yaw: (180.0/3.14)*yaw,
+        		roll: roll,
+       		};
+				}
+
+				var getCentroid = function(pts) {
+					return pts[37];
+					var meanX = 0.0, meanY = 0.0;
+					for(var i = 0; i < pts.length; ++i) {
+						meanX += pts[i][0];
+						meanY += pts[i][1];
+					}
+					meanX /= pts.length;
+					meanY /= pts.length;
+					return [meanX, meanY];
+				}
+
+				var dist = function(pt1, pt2) {
+					return Math.sqrt((pt1[0]-pt2[0])*(pt1[0]-pt2[0]) + (pt1[1]-pt2[1])*(pt1[1]-pt2[1]));
+				}
+
+				var drawEllipse = function (context, centerX, centerY, width, height, color) {
+  				context.beginPath();
+
+  				context.moveTo(centerX, centerY - height/2); // A1
+
+  				context.bezierCurveTo(
+    			centerX + width/2, centerY - height/2, // C1
+    			centerX + width/2, centerY +
+					height/2, // C2
+    			centerX, centerY + height/2); // A2
+
+  				context.bezierCurveTo(
+    			centerX - width/2, centerY + height/2, // C3
+    			centerX - width/2, centerY - height/2, // C4
+    			centerX, centerY - height/2); // A1
+
+					context.strokeStyle = color;
+					context.lineWidth = 5;
+      		context.stroke();
+  				context.closePath();
+				}
+
+				var drawOverlay = function(context, pts, color) {
+					var OVERLAY_IDX = [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 41, 62, 44, 47, 50, 53];
+					for(var i=0; i < pts.length; ++i) {
+						if(OVERLAY_IDX.indexOf(i) != -1) {
+							context.beginPath();
+      				context.arc(pts[i][0], pts[i][1], 1, 0, 2 * Math.PI);
+							context.lineWidth = 1;
+      				context.strokeStyle = color;
+      				context.stroke();
+						}
+					}
+				}
+
+				var setDisplayText = function(text) {
+					var ele = document.getElementById("displayText");
+					ele.innerHTML = text;
+				}
+
+				drawEllipse(overlayCC, overlay.width/2, overlay.height/2, overlay.width*0.45, overlay.height*0.60, 'red');
+
+				var insertAltVideo = function(video) {
+					if (supports_video()) {
+						if (supports_ogg_theora_video()) {
+							video.src = "./media/cap12_edit.ogv";
+						} else if (supports_h264_baseline_video()) {
+							video.src = "./media/cap12_edit.mp4";
+						} else {
+							return false;
+						}
+						//video.play();
+						return true;
+					} else return false;
+				}
+				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+				window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
+				// check for camerasupport
+				if (navigator.getUserMedia) {
+					// set up stream
+
+					var videoSelector = {video : true};
+					if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
+						var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
+						if (chromeVersion < 20) {
+							videoSelector = "video";
+						}
+					};
+
+					navigator.getUserMedia(videoSelector, function( stream ) {
+						if (vid.mozCaptureStream) {
+							vid.mozSrcObject = stream;
+						} else {
+							vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+						}
+						vid.play();
+					}, function() {
+						insertAltVideo(vid);
+						document.getElementById('gum').className = "hide";
+						document.getElementById('nogum').className = "nohide";
+						alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
+					});
+				} else {
+					insertAltVideo(vid);
+					document.getElementById('gum').className = "hide";
+					document.getElementById('nogum').className = "nohide";
+					alert("Your browser does not seem to support getUserMedia, using a fallback video instead.");
+				}
+
+				vid.addEventListener('canplay', enablestart, false);
+
+				function startVideo() {
+					// start video
+					vid.play();
+					// start tracking
+					ctrack.start(vid);
+					// start loop to draw face
+					drawLoop();
+				}
+				var idx = 0;
+				var state = FACE_STATE.NOT_IN_ROI;
+
+				function drawLoop() {
+					requestAnimFrame(drawLoop);
+					overlayCC.clearRect(0, 0, 400, 300);
+					//psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
+					var pos = ctrack.getCurrentPosition();
+					if (pos) {
+						var cen = getCentroid(pos);
+						//console.log(cen);
+						//console.log([overlay.width/2, overlay.height/2]);
+						var d = dist(cen, [overlay.width/2, overlay.height/2]);
+						if (d < 40) {
+							if(state == FACE_STATE.NOT_IN_ROI) {
+								setDisplayText("Turn right");
+								state = FACE_STATE.IN_ROI;
+							}
+							drawEllipse(overlayCC, overlay.width/2, overlay.height/2, overlay.width*0.45, overlay.height*0.60, 'green');
+							var params = getAngleParams(pos);
+							//console.log(params.yaw);
+							if(state == FACE_STATE.INIT) {
+
+							}
+							else if(0){
+							if(params.yaw < -15) {
+								// TODO: Start recording
+								if(state == FACE_STATE.IN_ROI) {
+									//console.log("Good. Lets start recording");
+									setDisplayText("Good. Lets start recording");
+									videoRecordStart();
+								}
+								state = FACE_STATE.IN_ROI_EXTREME_LEFT;
+							}
+							else if(params.yaw > 17 && state == FACE_STATE.IN_ROI_EXTREME_LEFT) {
+								//console.log("Good. Recording complete");
+								setDisplayText("Good. Recording complete");
+								state = FACE_STATE.IN_ROI_EXTREME_RIGHT;
+								// TODO: Finish recording
+								videoRecordStop();
+								state = FACE_STATE.INIT;
+							}
+							else if(state == FACE_STATE.IN_ROI_EXTREME_LEFT) {
+								//console.log("Slowly turn to your right.");
+								setDisplayText("Slowly turn to your left.");
+							}
+							else if(state != FACE_STATE.INIT){
+								//console.log("Turn little more left");
+								setDisplayText("Turn little more right");
+								state = FACE_STATE.IN_ROI;
+							}
+						}
+						drawOverlay(overlayCC, pos, 'white');
+					}
+					else {
+						state = FACE_STATE.NOT_IN_ROI;
+						drawEllipse(overlayCC, overlay.width/2, overlay.height/2, overlay.width*0.45, overlay.height*0.60, 'red');
+					}
+				//	ctrack.draw(overlay);
+					}
+				}
+
+				// update stats on every iteration
+				document.addEventListener('clmtrackrIteration', function(event) {
+					stats.update();
+				}, false);
+
+			</script>
+		</div>
+	</body>
+</html>
